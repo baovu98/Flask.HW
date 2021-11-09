@@ -1,11 +1,32 @@
 {% extends "base.html" %}
 
 {% block content %}
-<h1>Welcome {{name}}, here are top destinations!</h1>
-<a href="https://www.google.com">goooogle</a>
+ <h1>Welcome {{name}}, here are top destinations!</h1>
+ <a href="https://www.google.com">goooogle</a>
+
+    <ul>        
+        {% for city in cities %}
+        <li>{{ city }}</li>
+        {% endfor %}
+    </ul>
+    {% with messages = get_flashed_messages() %}
+    {% if messages %}
+    <ul>
+        {% for message in messages %}
+        <li>{{ message }}</li>
+        {% endfor %}
+    </ul>
+    {% endif %}
+    {% endwith %}
+    <form method="POST" novalidate>
+        {{ form.hidden_tag() }}
+
+        <p> {{ form.city_Name.label }} {{ form.city_Name(size=32) }}</p>
+
+        <p> {{ form.city_Rank.label }} {{ form.city_Rank(size=32) }}</p>
+
+        <p> {{ form.is_visited.label }} {{ form.is_visited() }}</p>
+
+        <p> {{ form.submit.label }} {{ form.submit() }}</p>
+    </form>     
 {% endblock %}
-
-
-
-
-
